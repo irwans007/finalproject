@@ -10,7 +10,7 @@ st.title(" Predict Used Car Price")
 # ================== KONFIG ==================
 # Raw URL model & CSV di GitHub (public)
 MODEL_URL = "https://raw.githubusercontent.com/irwans007/finalproject/main/best_catboost_pipeline.joblib"
-CSV_URL   = "https://raw.githubusercontent.com/irwans007/finalproject/main/UsedCarsSA_Clean_EN.csv"
+CSV_URL   = "https://raw.githubusercontent.com/irwans007/finalproject/refs/heads/main/streamlit/UsedCarsSA_Clean_EN.csv"
 
 # (Opsional) verifikasi integritas file model; kosongkan jika tidak dipakai
 EXPECTED_SHA256 = ""  # contoh: "3b5d5c3712955042212316173ccf37be..."
@@ -181,3 +181,4 @@ with col3:
             st.info("Silakan isi form lalu tekan tombol Predict.")
     else:
         st.caption("Isi form di kiri, lalu klik **Predict** untuk melihat hasil.")
+
