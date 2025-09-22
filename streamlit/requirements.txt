@@ -1,0 +1,11 @@
+streamlit
+pandas
+scikit-learn
+joblib
+numpy
+matplotlib.pyplot
+requests 
+pathlib
+json
+io
+hashlib
