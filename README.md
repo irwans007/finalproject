@@ -157,7 +157,7 @@ Model yang digunakan dan diuji:
 
 ## 💡7. Recommendation 
 
-- **For Model Development ** 
+- **For Model Development** 
 1. **Feature Engineering lebih kaya**  
    - Tambahkan fitur yang lebih menggambarkan kondisi mobil, misalnya riwayat servis, riwayat tabrakan, kondisi eksterior/interior, jumlah pemilik, dll.  
    - Gunakan data eksternal (misalnya harga rata-rata dari dealer lain) untuk memperkaya dataset.  
@@ -166,7 +166,7 @@ Model yang digunakan dan diuji:
    - Perbanyak jumlah dataset karena data setelah cleaning relatif kecil (~5800 baris).  
    - Lakukan balancing untuk mengurangi bias pada jenis mobil tertentu yang terlalu dominan.  
 
- -  **For Business ** 
+ -  **For Business** 
 1. **Implementasi ke Platform**  
    - Integrasikan model ke website/app Syarah.com sehingga penjual bisa langsung mendapat estimasi harga otomatis saat upload mobil.    
 
