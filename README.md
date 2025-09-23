@@ -8,113 +8,183 @@ Oleh: Eric Cen- Irwan Setio- Muhammad Bagaskara  (Gamma)
 ---
 
 ## Introduction  
-Proyek ini bertujuan membangun **model machine learning** untuk memprediksi harga mobil bekas Saudi Arabia . Proyek ini mencari model terbaik dimana model ini membantu mendukung tim appraiser dalam menilai harga secara konsisten, serta memberi calon penjual estimasi harga awal sebelum listing.  
+Proyek ini bertujuan membangun **model machine learning** untuk memprediksi harga mobil bekas Saudi Arabia syarah.com . Proyek ini mencari model terbaik dimana model ini membantu mendukung tim appraiser dalam menilai harga secara konsisten, serta memberi calon penjual estimasi harga awal sebelum listing.  
+
+Daftar Isi
+1. Business Problem Understanding
+2. Data Understanding
+3. Data Pre-Processing
+4. Modelling
+5. Evaluation
+6. Conclusion
+7. Recommendation
+
+---
+
+## 🔑 1. Business Problem  
+
+ - **Context**  
+Sebuah dealer mobil saudi arabia ingin menenentukan harga jual mobil bekas dengan menggunakan data analytics dan model Machine Learning untuk diimplementasikan kepada sales dealer tersebut. Pengunaan model ini bertujuan untuk menghindari kesalahan dalam memnberikan harga jual pada konsumen dan untuk juga meningkatkan pendapatan dealer & performa sales.  
+
+- **Problem Statement** 
+Pendapatan dealer bisa berkurang karena permasalahan harga yang tidak tepat & salah. sehingga dealer ingin meningkatkan pendapatan & mencari harga yang optimal. karena tidak didasarkan data yang tidak informatif seperti data dan cara tradisional menentukan harga mobil bekas.Jika penentuan harga tidak optimal, dealer akan terus mengalami kerugian. 
+
+- **Stakeholders**
  
+1. Calon Penjual Mobil
+   - Masalah: Penjual bingung harga yang cocok untuk harga mobilnya 
+   - Dampak: Mobil susah laku 
 
-- 🏢 **Perusahaan Syarah.com** → menghemat biaya appraisal manual  
-- 👨‍🔧 **Team Appraiser** → sebagai referensi harga mobil  
-- 🚘 **Calon Penjual** → mendapat estimasi harga sebelum listing  
+2. Tim Appraiser  
+   - Masalah: Jumlah mobil yang akan dijual membutuhkan banyak pegawai untuk analisa harga
+   - Dampak: Beban kerja tinggi  
+
+3. Dealer  
+   - Masalah: Perusahaan membutuhkan pengeluaran untuk hire banyak pegawai dalam penentuan harga  
+   - Dampak: Pendapatan berkurang  
+
+- **Goals** 
+Berdasarkan permasalahan tersebut, model ini dapat digunakan calon penjual untuk mendapatkan perkiraan harga jual serta pegawai appraiser juga dapat menentukan harga mobil setelah inspeksi.
+
+
+Target metric:
+| Metric | Target |  
+|--------|---------|  
+| MAE    | < 18,000 SAR |  
+| MAPE   | < 40 |  
+
+- **Analytic Approach**
+1. Analisis data untuk memahami pola antar fitur yang memengaruhi harga mobil.  
+2. Membangun model untuk memprediksi harga mobil bekas.  
+3. Evaluasi model menggunakan metrik error (MAE, MAPE, RMSE, R²).  
+  
+- **📏 Metric Evaluation**
+
+- **MAE (Primary)** → Stabil terhadap outlier, hasil dalam satuan asli (SAR).  
+- **MAPE (Secondary)** → Menunjukkan error dalam bentuk persentase.  
+- **R² (Goodness of Fit)** → Mengukur seberapa baik model menjelaskan data.  
+- **RMSE** → Memberi penalti lebih besar pada error ekstrem (outlier).  
+
+👉 Semakin kecil nilai **MAE** & **MAPE**, semakin akurat model dalam memprediksi harga mobil sesuai keterbatasan fitur dataset.  
+
+---
+## 📊 2. Data Understanding  
+
+
+  - **Sumber** : https://www.kaggle.com/datasets/turkibintalib/saudi-arabia-used-cars-dataset
+  - **Jumlah data:** 8035 baris, 13 kolom  
+  - **Feature Breakdown**
+**Numerical Features**:
+
+Year: Tahun produksi mobil. Ini adalah fitur numerik kontinu, namun juga bisa dianggap sebagai fitur ordinal.
+Engine_Size: Ukuran mesin mobil, kemungkinan dalam satuan liter.
+Mileage: Total kilometer yang telah ditempuh oleh mobil. Fitur ini mungkin mengandung outlier, seperti nilai yang sangat besar dalam cuplikan data.
+Price: Harga jual mobil. Ini adalah variabel target untuk model prediksi. Nilainya berupa angka kontinu, namun terdapat nilai 0 yang kemungkinan besar merupakan placeholder untuk harga yang belum dicantumkan atau hilang.
+
+**Categorical Features:**
+Make: Merek atau produsen mobil (misalnya Toyota, Ford, Hyundai).
+Type: Model spesifik dari mobil (misalnya Corolla, Explorer, Sonata).
+Origin: Negara asal mobil, dengan nilai seperti 'Saudi' atau 'Other'.
+Color: Warna eksterior mobil. Terdapat nilai seperti "Another Color" yang menunjukkan perlunya pembersihan atau konsolidasi kategori.
+Options: Tingkat kelengkapan fitur mobil (misalnya 'Full', 'Semi Full', 'Standard').
+Fuel_Type: Jenis bahan bakar yang digunakan (misalnya 'Gas').
+Gear_Type: Jenis transmisi (misalnya 'Automatic').
+Region: Wilayah geografis atau kota tempat mobil dijual (misalnya 'Riyadh', 'Makkah').
+Negotiable: Fitur biner yang menunjukkan apakah harga bisa dinegosiasikan. Dataset menggunakan nilai boolean (TRUE/FALSE), yang telah dikonversi menjadi nilai numerik (1/0) dalam kode. 
+
+
 
 ---
 
-## 🔑 Business Problem  
-
-- ❌ Penentuan harga manual → tidak efisien & mahal  
-- ❌ Workload tinggi jika mobil bertambah  
-- ✅ Solusi: **Model Machine Learning** prediksi harga otomatis  
-
-**🎯 Target Metrics**:  
-- MAE `< 10,000 SAR`  
-- MAPE `< 20%`  
-- R² `> 0.70`  
-
----
-
-## 📊 Dataset  
-
-- **Jumlah data:** 5.624 baris, 11 kolom  
-- **Sumber:** Syarah.com  
-- **Fitur utama:**  
-  - Type, Region, Make, Gear Type, Origin  
-  - Options (Standard / Semi-Full / Full)  
-  - Year, Engine Size, Mileage  
-  - Price (Target)  
-
-📌 Setelah preprocessing → **3.192 data usable**  
-
----
-
-## ⚙️ Data Preprocessing  
+## ⚙️3.  Data Preprocessing  
 
 - Hapus duplikat & data dengan `Price=0`  
-- Handle **outlier**: Price (15k–182k), Year (2003–2022), Mileage (<376k)  
-- Encoding: Ordinal, Binary, One-Hot  
-- Scaling: Robust Scaler  
+- Pakai StandardScaler, RobustScaler 
 
 ---
 
-## 🤖 Modelling  
+## 🤖 4. Modelling  
 
-Model yang diuji:  
-- KNN Regressor  
-- Decision Tree  
-- Linear Regression  
-- XGB Regressor  
-- Stacking (Linear, Decision Tree, KNN, XGB)  
+Model yang digunakan dan diuji:  
+- Linear Regression 
+- Ridge 
+- Lasso 
+- K-Neighbors Regressor
+- Decision Tree Regressor  
+- Random Forest
+- Gradient Boosting
+- XGBoost
+- LightGBM
 - **CatBoost Regressor (Best)**  
 
 ---
 
-## 🏆 Hasil  
+## 5. Evaluation  
 
 **🔥 Model Terbaik: CatBoost Regressor**  
 
 | Metric | Score   |  
 |--------|---------|  
-| MAE    | 9,837.29 |  
-| MAPE   | 18% |  
-| R²     | 0.84 |  
-| RMSE   | 14,460.97 |  
-
-✅ Rata-rata prediksi meleset ±18% dari harga sebenarnya.  
-
----
-
-## 📌 Kesimpulan  
-
-- Fitur paling berpengaruh: **Engine Size, Year, Mileage**  
-- CatBoost dengan tuning memberikan performa terbaik  
-- Dataset masih terbatas (tidak ada fitur kondisi fisik mobil)  
-
----
-
-## 💡 Rekomendasi  
-
-- Tambahkan fitur detail kondisi mobil (interior, tabrakan, dll.)  
-- Gunakan gambar mobil → Computer Vision  
-- Segmentasi prediksi berdasarkan range harga mobil  
-- Perbanyak dataset agar prediksi lebih akurat  
-
----
-
-## 🛠️ Tech Stack  
-
-- Python (Pandas, NumPy, Scikit-learn)  
-- CatBoost, XGBoost  
-- Matplotlib, Seaborn  
-- Jupyter Notebook  
-- Streamlit (Deployment)  
-
----
-
-## ✨ Impact Bisnis  
-
-- 💰 Hemat biaya appraisal → dari **SAR 80,000/bln** ➝ hanya **SAR 12,000/bln**  
-- 🚀 Skalabilitas tinggi: ribuan mobil bisa diprediksi otomatis  
-- 🙌 Membantu penjual & perusahaan menentukan harga lebih cepat  
-
----
+| MAE    | 17743 |  
+| MAPE   | 38% |  
 
 
 
 ---
+
+## 📌 6. Conclusion  
+
+1. Berdasarkan eksperimen dengan berbagai algoritma regresi, **CatBoost Regressor** terbukti menjadi model terbaik dengan hasil:  
+   - MAE ≈ **17,743 SAR**  
+   - MAPE ≈ **38%**  
+   - Performanya lebih stabil dibandingkan sebagian besar model lain.  
+
+2. **Fitur utama yang paling memengaruhi harga mobil** adalah:  
+   - **Engine Size**  
+   - **Year (Tahun Produksi)**  
+   - **Mileage (Jarak Tempuh)**  
+
+3. Model mampu memberikan estimasi harga mobil bekas yang dapat membantu:  
+   - **Calon penjual** → mendapatkan perkiraan harga awal sebelum listing.  
+   - **Tim Appraiser** → sebagai acuan dalam menilai harga secara konsisten.  
+   - **Dealer/Perusahaan** → mengurangi ketergantungan pada penilaian manual dan menekan biaya appraisal.  
+
+4. Meski demikian, tingkat error relatif (**MAPE 38%**) menunjukkan bahwa prediksi masih cukup meleset. Hal ini disebabkan keterbatasan dataset, terutama tidak adanya fitur yang merepresentasikan **kondisi fisik mobil** (riwayat servis, kerusakan, tabrakan, kondisi interior/eksterior, dll.).  
+
+👉 Secara keseluruhan, project ini berhasil membuktikan bahwa **machine learning regression** dapat digunakan untuk membantu dealer mobil bekas di Saudi Arabia dalam **otomatisasi penentuan harga**, meskipun masih perlu pengembangan lebih lanjut agar akurasi semakin tinggi.  
+
+---
+
+## 💡7. Recommendation 
+
+- **For Model Development ** 
+1. **Feature Engineering lebih kaya**  
+   - Tambahkan fitur yang lebih menggambarkan kondisi mobil, misalnya riwayat servis, riwayat tabrakan, kondisi eksterior/interior, jumlah pemilik, dll.  
+   - Gunakan data eksternal (misalnya harga rata-rata dari dealer lain) untuk memperkaya dataset.  
+
+2. **Data Augmentation**  
+   - Perbanyak jumlah dataset karena data setelah cleaning relatif kecil (~5800 baris).  
+   - Lakukan balancing untuk mengurangi bias pada jenis mobil tertentu yang terlalu dominan.  
+
+ --  **For Business ** 
+1. **Implementasi ke Platform**  
+   - Integrasikan model ke website/app Syarah.com sehingga penjual bisa langsung mendapat estimasi harga otomatis saat upload mobil.    
+
+3. **Efisiensi Biaya**  
+   - Dengan model, perusahaan dapat menghemat biaya appraisal manual 
+   - Hemat biaya bisa dialokasikan ke promosi atau ekspansi bisnis.  
+
+4. **Ekspansi Use Case**  
+   - Selain prediksi harga, model serupa bisa dikembangkan untuk:  
+     - Prediksi *mobil paling laku* (demand forecasting).  
+     - Rekomendasi mobil sesuai preferensi pelanggan.  
+     - Analisis tren harga mobil per merek/tipe.  
+
+---
+
+
+
+
+
+
+
