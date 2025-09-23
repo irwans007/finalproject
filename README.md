@@ -183,6 +183,17 @@ Model yang digunakan dan diuji:
 ---
 
 
+---
+
+## 🚀 Demo & Dashboard  
+
+### 🌐 Streamlit App  
+[![Streamlit Screenshot](streamlit.png)](https://gamma-finalprojek.streamlit.app/)  
+
+### 📊 Tableau Dashboard  
+[![Tableau Screenshot](tableau.png)](https://public.tableau.com/app/profile/muhammad.bagaskara7905/viz/FinalprojectTableau_17586298692610/Dashboard3)  
+
+
 
 
 
