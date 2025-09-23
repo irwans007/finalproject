@@ -44,5 +44,7 @@ st.markdown("<br><br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=Tr
 
 
 # Link tambahan
-st.markdown("For detail how the model works you can visit : [Click Here](https://github.com/irwans007/finalproject/)
+st.markdown("For detail how the model works you can visit: [Click Here](https://github.com/irwans007/finalproject)")
+
+
 
