@@ -12,8 +12,7 @@ st.title("📈 Data Overview (Only)")
 
 st.write(
     "Upload CSV → lihat ringkasan & rata-rata **Price** per kategori. "
-    "Halaman ini **tidak** memuat prediksi maupun SHAP."
-)
+    )
 
 # ────────────────────────────────────────────────────────────────────────────────
 # KONFIGURASI
@@ -177,3 +176,4 @@ if available_cats:
     )
 else:
     st.info("Tambahkan kolom kategori (mis. Type/Region/Make/…) untuk melihat ringkasan per kategori.")
+
