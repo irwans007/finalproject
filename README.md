@@ -1,19 +1,15 @@
-# 🚗 Saudi Arabia Used Car Price Prediction  
+# Saudi Arabia Used Car Price Prediction  
 
- 
-[![Streamlit](https://img.shields.io/badge/Streamlit-Demo-brightgreen.svg)]([https://mobil-bekas-saudi.streamlit.app](https://gamma-finalprojek.streamlit.app/))  
-[![Tableau](https://img.shields.io/badge/Tableau-Dashboard-orange.svg)]([https://public.tableau.com/app/profile/](https://public.tableau.com/app/profile/muhammad.bagaskara7905/viz/FinalprojectTableau_17586298692610/Dashboard3))
+Oleh: Eric Cen- Irwan Setio- Muhammad Bagaskara  (Gamma)
 
+📑 [Tableu](https://public.tableau.com/app/profile/muhammad.bagaskara7905/viz/FinalprojectTableau_17586298692610/Dashboard3) | 🌐 [Streamlit Demo](https://gamma-finalprojek.streamlit.app/)  
 
-**👨‍💻 Author: Eric Cen- Irwan Setio- Muhammad Bagaskara **  
-
-📑 [Presentation Deck](#) | 🌐 [Streamlit Demo](#)  
 
 ---
 
-## 🎯 Tentang Proyek  
-Proyek ini membangun **model regresi machine learning** untuk memprediksi harga **mobil bekas di Saudi Arabia** (platform [Syarah.com](https://syarah.com)).  
-Model ini diharapkan membantu:  
+## Introduction  
+Proyek ini bertujuan membangun **model machine learning** untuk memprediksi harga mobil bekas Saudi Arabia . Proyek ini mencari model terbaik dimana model ini membantu mendukung tim appraiser dalam menilai harga secara konsisten, serta memberi calon penjual estimasi harga awal sebelum listing.  
+ 
 
 - 🏢 **Perusahaan Syarah.com** → menghemat biaya appraisal manual  
 - 👨‍🔧 **Team Appraiser** → sebagai referensi harga mobil  
