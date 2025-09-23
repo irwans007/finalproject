@@ -62,8 +62,7 @@ Target metric:
 
 - **MAE (Primary)** → Stabil terhadap outlier, hasil dalam satuan asli (SAR).  
 - **MAPE (Secondary)** → Menunjukkan error dalam bentuk persentase.  
-- **R² (Goodness of Fit)** → Mengukur seberapa baik model menjelaskan data.  
-- **RMSE** → Memberi penalti lebih besar pada error ekstrem (outlier).  
+
 
 👉 Semakin kecil nilai **MAE** & **MAPE**, semakin akurat model dalam memprediksi harga mobil sesuai keterbatasan fitur dataset.  
 
