@@ -106,7 +106,7 @@ def user_input_features(df: pd.DataFrame) -> pd.DataFrame:
     Fuel_Type = st.selectbox("Select Fuel Type", fuel_vals)
 
     Engine_Size = st.number_input("Fill Engine Size", min_value=1.0, max_value=9.0, step=0.1, value=5.0)
-    Year        = st.number_input("Fill Year (2003 - 2021)", min_value=2003, max_value=2021, step=1, value=2010)
+    Year        = st.number_input("Fill Year (2003 - 2022)", min_value=2003, max_value=2022, step=1, value=2010)
     Mileage     = st.number_input("Fill Mileage (in KM per hour)", min_value=0, max_value=376000, step=100, value=0)
 
     df_new = pd.DataFrame({
@@ -181,3 +181,4 @@ with col3:
             st.info("Silakan isi form lalu tekan tombol Predict.")
     else:
         st.caption("Isi form di kiri, lalu klik **Predict** untuk melihat hasil.")
+
